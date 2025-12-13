@@ -4,7 +4,7 @@ const router = express.Router();
 const ps = require('@prisma/client');
 const prisma = new ps.PrismaClient();
 
-const pnum = 5; //１ページあたりの表示数
+const pnum = 15; //１ページあたりの表示数
 
 //ログインのチェック
 function check(req, res) {
