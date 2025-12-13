@@ -120,7 +120,7 @@ router.get('/login', (req, res, next) => {
     title: 'Users/login',
     content: '名前とパスワードを入力してください',
   }
-  res.render('user/login', data);
+  res.render('users/login', data);
 });
 
 //ログイン処理 POST
@@ -143,7 +143,7 @@ router.post('/login', (req, res, next) => {
         title: 'Users/Login',
         content: '名前かパスワードに問題があります。再度入力ください。'
       }
-      res.render('user/login', data);
+      res.render('users/login', data);
     }
   });
 });

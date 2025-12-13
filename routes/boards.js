@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const ps = require('@prisma/client');
-const prisma = ps.PrismaClient();
+const prisma = new ps.PrismaClient();
 
 const pnum = 5; //１ページあたりの表示数
 
@@ -24,6 +24,7 @@ router.get('/', (req, res, next) => {
 
 //トップページに番号をつけてアクセス
 router.get('/:page', (req, res, next) => {
+    //true（=ログインしてない）ならコールバック関数から抜ける
     if (check(req, res)) { return };
     const pg = +req.params.page;
     prisma.Board.findMany({
@@ -32,6 +33,9 @@ router.get('/:page', (req, res, next) => {
         orderBy: [
             {createdAt: 'desc'}
         ],
+        include: {
+            account: true,
+        }
     }).then(brds => {
         var data = {
             title: 'Boards',

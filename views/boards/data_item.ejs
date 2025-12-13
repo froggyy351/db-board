@@ -1,0 +1,25 @@
+<% if (val != null) { %>
+    <tr class="row">
+        <th class="col-2">
+            <a class="text-dark" href="/boards/home/<%=val.account.name %>/<%= val.account.Id %>/0">
+                <%= val.account.name %>
+            </a>
+        </th>
+        <td class="col-7"><%= val.message %></td>
+        <% 
+            var d = new Date(val.createdAt);
+            function pad(n) { 
+                return n.toString().padStart(2, '0');
+            }
+
+            var dstr = 
+            d.getFullYear() + '-' +
+            pad(d.getMonth() + 1) + '-' +
+            pad(d.getDate()) + ' ' +
+            pad(d.getHours()) + ':' +
+            pad(d.getMinutes()) + ':' +
+            pad(d.getSeconds());
+        %>
+        <td class="col-3"><%= dstr %></td>
+    </tr>
+<% } %>
